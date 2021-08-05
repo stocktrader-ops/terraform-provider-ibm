@@ -3,7 +3,7 @@ variable "ibmcloud_api_key" {
 }
 
 variable "cos_service_name" {
-    default = "myservice"
+    default = "gas-roks-schem"
 }
 
 variable "cos_service_plan" {
@@ -11,15 +11,15 @@ variable "cos_service_plan" {
 }
 
 variable "cluster_node_flavor" {
-    default = "bx2.16x64"
+    default = "bx2.4x16"
 }
 
 variable "cluster_kube_version" {
-    default = "4.4_openshift"
+    default = "4.6.38_openshift"
 }
 
 variable "deafult_worker_pool_count"{
-    default = "2"
+    default = "1"
 }
 
 variable "region" {
@@ -27,11 +27,11 @@ variable "region" {
 }
 
 variable "resource_group" {
-  default = "Default"
+  default = "default"
 }
 
 variable "cluster_name" {
-  default = "cluster-roks-on-vpc"
+  default = "gas-roks-schem"
 }
 
 variable "worker_pool_name" {
