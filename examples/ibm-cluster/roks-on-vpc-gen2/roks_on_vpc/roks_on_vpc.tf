@@ -81,14 +81,12 @@ resource "ibm_container_vpc_cluster" "cluster" {
   cos_instance_crn  = var.cos_instance_crn
 
   zones {
-  {
     subnet_id = ibm_is_subnet.subnet1.id
     name      = local.ZONE1
-  },
-  {
+  }
+  zones {
     subnet_id = ibm_is_subnet.subnet2.id
     name      = local.ZONE2
-  }
   }
 
   kms_config {
@@ -108,13 +106,11 @@ resource "ibm_container_vpc_worker_pool" "cluster_pool" {
   resource_group_id = data.ibm_resource_group.resource_group.id
   entitlement       = var.entitlement
   zones {
-  {
     subnet_id = ibm_is_subnet.subnet1.id
     name      = local.ZONE1
-  },
-  {
+  }
+  zones {
     subnet_id = ibm_is_subnet.subnet2.id
     name      = local.ZONE2
-  }
   }
 }
