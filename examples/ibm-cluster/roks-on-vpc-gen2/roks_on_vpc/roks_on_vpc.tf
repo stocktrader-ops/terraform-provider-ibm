@@ -101,6 +101,7 @@ resource "ibm_container_vpc_cluster" "cluster" {
 data "ibm_container_cluster_config" "roks_cluster" {
   cluster_name_id = "${ibm_container_vpc_cluster.cluster.name}"
   admin           = true
+  depends_on = [ibm_container_vpc_cluster.cluster]
 }
 
 provider "kubernetes" {
