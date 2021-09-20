@@ -117,3 +117,13 @@ resource "kubernetes_namespace" "stocktrader" {
   }
 }
 
+data "kubectl_file_documents" "manifests" {
+    content = file("../stocktrader-operator/operator.yaml")
+}
+resource "kubectl_manifest" "operator-install" {
+    count     = length(data.kubectl_file_documents.manifests.documents)
+    yaml_body = element(data.kubectl_file_documents.manifests.documents, count.index)
+    depends_on = [ibm_container_vpc_cluster.cluster]
+}
+
+
