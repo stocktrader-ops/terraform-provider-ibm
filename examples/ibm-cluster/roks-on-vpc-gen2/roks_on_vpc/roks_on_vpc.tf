@@ -117,6 +117,12 @@ resource "kubernetes_namespace" "stocktrader" {
   }
 }
 
+provider "kubectl" {
+  host                   = data.ibm_container_cluster_config.roks_cluster.host
+  client_certificate     = data.ibm_container_cluster_config.roks_cluster.admin_certificate
+  client_key             = data.ibm_container_cluster_config.roks_cluster.admin_key
+  cluster_ca_certificate = data.ibm_container_cluster_config.roks_cluster.ca_certificate
+}
 data "kubectl_file_documents" "manifests" {
     content = file("../stocktrader-operator/operator.yaml")
 }
