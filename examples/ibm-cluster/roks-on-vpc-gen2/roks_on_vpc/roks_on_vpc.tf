@@ -99,7 +99,7 @@ resource "ibm_container_vpc_cluster" "cluster" {
 
 ### adding Stocktrader operator installation
 data "ibm_container_cluster_config" "roks_cluster" {
-  cluster_name_id = "${var.cluster_name}${random_id.name1.hex}"
+  cluster_name_id = "${ibm_container_vpc_cluster.cluster.name}"
   admin           = true
 }
 
