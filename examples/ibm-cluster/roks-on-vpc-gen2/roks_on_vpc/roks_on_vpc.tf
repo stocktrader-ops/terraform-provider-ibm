@@ -99,9 +99,8 @@ resource "ibm_container_vpc_cluster" "cluster" {
 
 ### adding Stocktrader operator installation
 data "ibm_container_cluster_config" "roks_cluster" {
-  cluster_name_id = "${ibm_container_vpc_cluster.cluster.name}"
+  cluster_name_id = "gas-roks-schem2c61"
   admin           = true
-  depends_on = [ibm_container_vpc_cluster.cluster]
 }
 
 provider "kubernetes" {
