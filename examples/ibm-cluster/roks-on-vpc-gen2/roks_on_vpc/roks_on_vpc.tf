@@ -97,25 +97,7 @@ resource "ibm_container_vpc_cluster" "cluster" {
 
 }
 
-### adding Stocktrader operator installation
-data "ibm_container_cluster_config" "roks_cluster" {
-  cluster_name_id = "${ibm_container_vpc_cluster.cluster.name}"
-  admin           = true
-  depends_on = [ibm_container_vpc_cluster.cluster]
-}
 
-provider "kubernetes" {
-  host                   = data.ibm_container_cluster_config.roks_cluster.host
-  client_certificate     = data.ibm_container_cluster_config.roks_cluster.admin_certificate
-  client_key             = data.ibm_container_cluster_config.roks_cluster.admin_key
-  cluster_ca_certificate = data.ibm_container_cluster_config.roks_cluster.ca_certificate
-}
-
-resource "kubernetes_namespace" "stocktrader" {
-  metadata {
-    name = "terraform-stocktrader"
-  }
-}
 
 
 
